@@ -11,4 +11,4 @@ class UserResponse(BaseModel):
     updated_at: datetime | None
     active: bool
 
-model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(from_attributes=True)
