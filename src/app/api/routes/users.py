@@ -5,6 +5,7 @@ from app.db.session import get_db
 from app.repositories.user_repository import UserRepository
 from app.schemas.user import UserResponse
 from app.services.user_service import UserService
+from app.core.dependencies import CurrentUser
 
 
 users_router = APIRouter(
@@ -27,6 +28,7 @@ def get_user_service(
     description="Obtiene una lista paginada de usuarios Brain"
 )
 async def get_users(
+    current_user: CurrentUser,
     service: UserService = Depends(get_user_service),
     limit: int = Query(default=20, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
@@ -44,6 +46,7 @@ async def get_users(
 )
 async def get_user_by_id(
     user_id: int,
+    current_user: CurrentUser,
     service: UserService = Depends(get_user_service)
 ):
     user = await service.get_user_by_id(user_id)

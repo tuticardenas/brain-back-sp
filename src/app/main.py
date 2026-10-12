@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
 from app.api.routes.users import users_router
+from app.api.routes.auth import auth_router
 
 app = FastAPI(
     title="Brain Tutorship API",
@@ -46,3 +47,4 @@ async def check_database(db: AsyncSession = Depends(get_db)):
 # Router registration
 # -----------------------------------------
 app.include_router(users_router)
+app.include_router(auth_router)
