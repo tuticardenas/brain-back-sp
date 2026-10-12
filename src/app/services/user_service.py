@@ -15,3 +15,6 @@ class UserService:
             limit=limit,
             offset=offset,
         )
+
+    async def get_user_by_id(self, user_id: int) -> User | None:
+        return await self.user_repository.get_user_by_id(user_id)
